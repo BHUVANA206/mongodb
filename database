@@ -16,7 +16,7 @@ test> use testdb
 switched to db testdb
 testdb> db.Users.find();
 
-testdb> db.Users.insertOne({u_id:"100",name:"aa",city:"xx"})
+testdb> db.Users.insertOne({u_id:"100",name:"aa",city:"xx"})                //insertion
 {
   acknowledged: true,
   insertedId: ObjectId('67ee0e5f0c59d0123bb71236')
@@ -76,7 +76,7 @@ testdb> db.Payments.insertOne({pay_id:"3030",o_id:"3",amount:"150",status:"unpai
   acknowledged: true,
   insertedId: ObjectId('67ee10c30c59d0123bb71241')
 }
-testdb> db.Users.find();
+testdb> db.Users.find();            //find()
 [
   {
     _id: ObjectId('67ee0e5f0c59d0123bb71236'),
@@ -221,7 +221,7 @@ testdb>  db.Orders.find({u_id:"100"});
     status: 'pending'
   }
 ]
-testdb> db.Orders.updateOne({u_id:"100"},{$set:{status:"cancelled"}});
+testdb> db.Orders.updateOne({u_id:"100"},{$set:{status:"cancelled"}});           //update
 {
   acknowledged: true,
   insertedId: null,
@@ -229,7 +229,7 @@ testdb> db.Orders.updateOne({u_id:"100"},{$set:{status:"cancelled"}});
   modifiedCount: 1,
   upsertedCount: 0
 }
-testdb> db.Orders.find({u_id:"100"});
+testdb> db.Orders.find({u_id:"100"});           //find
 [
   {
     _id: ObjectId('67ee1456736a0696606b1412'),
@@ -284,11 +284,55 @@ testdb> db.Products.find({p_id:"200"});
     price: '50',
     category: 'sweet',
     stock: '50'
+}
+//update using $inc       
+testdb> db.Products.find({p_id:200});
+[
+  {
+    _id: ObjectId('67ee0f78b2c0dcd2ec6b140e'),
+    p_id: 200,
+    name: 'choco',
+    price: 50,
+    category: 'sweet',
+    stock: 40
   }
 ]
-testdb>
-
-
+testdb> db.Products.updateOne({p_id:200},{$inc:{stock:+20}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+testdb> db.Products.find({p_id:200});
+[
+  {
+    _id: ObjectId('67ee0f78b2c0dcd2ec6b140e'),
+    p_id: 200,
+    name: 'choco',
+    price: 50,
+    category: 'sweet',
+    stock: 60
+  }
+]
+testdb> db.Users.deleteOne({u_id:"100"});
+{ acknowledged: true, deletedCount: 1 }
+testdb> db.Users.find();
+[
+  {
+    _id: ObjectId('67ee1409736a0696606b140c'),
+    u_id: '101',
+    name: 'bb',
+    city: 'yy'
+  },
+  {
+    _id: ObjectId('67ee1411736a0696606b140d'),
+    u_id: '102',
+    name: 'cc',
+    city: 'zz'
+  }
+]
 
 
 
