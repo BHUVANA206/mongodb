@@ -1,0 +1,39 @@
+testdb> db.Orders.aggregate([
+...      {         $lookup: {
+...              from: "Payments",
+...              localField: "o_id",
+...              foreignField: "o_id",
+...              as: "user_info"
+...          }
+...      },
+...      {
+...          $unwind: "$user_info"
+...      },
+...      {
+...          $project: {
+...              _id: 1,
+...              "user_info.name": 1,
+...              pay_id: 1,
+...              amount: 1,
+...              status: 1
+...          }
+...      }
+... ])
+[
+  {
+    _id: ObjectId('67ee144c736a0696606b1411'),
+    status: 'pending',
+    user_info: {}
+  },
+  {
+    _id: ObjectId('67ee1456736a0696606b1412'),
+    status: 'cancelled',
+    user_info: {}
+  },
+  {
+    _id: ObjectId('67ee1460736a0696606b1413'),
+    status: 'pending',
+    user_info: {}
+  }
+]
+testdb>
