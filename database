@@ -1,0 +1,202 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 67ee0db40c59d0123bb71235
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.2
+Using MongoDB:          8.0.6
+Using Mongosh:          2.4.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-04-03T09:53:57.742+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use testdb
+switched to db testdb
+testdb> db.Users.find();
+
+testdb> db.Users.insertOne({u_id:"100",name:"aa",city:"xx"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0e5f0c59d0123bb71236')
+}
+testdb> db.Users.insertOne({u_id:"101",name:"bb",city:"yy"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0e810c59d0123bb71237')
+}
+testdb> db.Users.insertOne({u_id:"102",name:"cc",city:"zz"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0e8f0c59d0123bb71238')
+}
+testdb> db.Products.insertOne({p_id:"200",name:"choco",price:"50",category:"candy",stock:"50"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0eff0c59d0123bb71239')
+}
+testdb> db.Products.insertOne({p_id:"201",name:"cake",price:"200",category:"sweet",stock:"10"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0f210c59d0123bb7123a')
+}
+testdb> db.Products.insertOne({p_id:"202",name:"icecream",price:"30",category:"dessert",stock:"50"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0f4f0c59d0123bb7123b')
+}
+testdb> db.Orders.insertOne({o_id:"1",u_id:"101",p_id:"200",qty:"20",status:"delivered"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0fa30c59d0123bb7123c')
+}
+testdb> db.Orders.insertOne({o_id:"2",u_id:"100",p_id:"202",qty:"15",status:"pending"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee0ff00c59d0123bb7123d')
+}
+testdb> db.Orders.insertOne({o_id:"3",u_id:"101",p_id:"201",qty:"5",status:"pending"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee10280c59d0123bb7123e')
+}
+testdb> db.Payments.insertOne({pay_id:"1000",o_id:"1",amount:"60",status:"paid",method:"upi"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee10810c59d0123bb7123f')
+}
+testdb> db.Payments.insertOne({pay_id:"2000",o_id:"2",amount:"40",status:"unpaid",method:"card"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee109e0c59d0123bb71240')
+}
+testdb> db.Payments.insertOne({pay_id:"3030",o_id:"3",amount:"150",status:"unpaid",method:"cash"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67ee10c30c59d0123bb71241')
+}
+testdb> db.Users.find();
+[
+  {
+    _id: ObjectId('67ee0e5f0c59d0123bb71236'),
+    u_id: '100',
+    name: 'aa',
+    city: 'xx'
+  },
+  {
+    _id: ObjectId('67ee0e810c59d0123bb71237'),
+    u_id: '101',
+    name: 'bb',
+    city: 'yy'
+  },
+  {
+    _id: ObjectId('67ee0e8f0c59d0123bb71238'),
+    u_id: '102',
+    name: 'cc',
+    city: 'zz'
+  }
+]
+testdb> db.Products.find();
+[
+  {
+    _id: ObjectId('67ee0eff0c59d0123bb71239'),
+    p_id: '200',
+    name: 'choco',
+    price: '50',
+    category: 'candy',
+    stock: '50'
+  },
+  {
+    _id: ObjectId('67ee0f210c59d0123bb7123a'),
+    p_id: '201',
+    name: 'cake',
+    price: '200',
+    category: 'sweet',
+    stock: '10'
+  },
+  {
+    _id: ObjectId('67ee0f4f0c59d0123bb7123b'),
+    p_id: '202',
+    name: 'icecream',
+    price: '30',
+    category: 'dessert',
+    stock: '50'
+  }
+]
+testdb> db.Orders.find();
+[
+  {
+    _id: ObjectId('67ee0fa30c59d0123bb7123c'),
+    o_id: '1',
+    u_id: '101',
+    p_id: '200',
+    qty: '20',
+    status: 'delivered'
+  },
+  {
+    _id: ObjectId('67ee0ff00c59d0123bb7123d'),
+    o_id: '2',
+    u_id: '100',
+    p_id: '202',
+    qty: '15',
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('67ee10280c59d0123bb7123e'),
+    o_id: '3',
+    u_id: '101',
+    p_id: '201',
+    qty: '5',
+    status: 'pending'
+  }
+]
+testdb> db.Payments.find();
+[
+  {
+    _id: ObjectId('67ee10810c59d0123bb7123f'),
+    pay_id: '1000',
+    o_id: '1',
+    amount: '60',
+    status: 'paid',
+    method: 'upi'
+  },
+  {
+    _id: ObjectId('67ee109e0c59d0123bb71240'),
+    pay_id: '2000',
+    o_id: '2',
+    amount: '40',
+    status: 'unpaid',
+    method: 'card'
+  },
+  {
+    _id: ObjectId('67ee10c30c59d0123bb71241'),
+    pay_id: '3030',
+    o_id: '3',
+    amount: '150',
+    status: 'unpaid',
+    method: 'cash'
+  }
+testdb>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
